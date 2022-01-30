@@ -1,0 +1,81 @@
+{% block select2_script %}
+
+    <script src="{{ asset('bundles/tools/libs/select2/dist/js/select2.full.min.js') }}"></script>
+    <link href="{{ asset('bundles/tools/libs/select2/dist/css/select2.min.css') }}" rel="stylesheet"/>
+    {% if theme != 'classic' %}
+        <link href="{{ asset('bundles/tools/css/select2-'~ theme  ~'-theme.min.css') }}" rel="stylesheet"/>
+    {% endif %}
+
+{% endblock %}
+
+{% block select2type_widget %}
+
+    {{ block ('select2_script')}}
+
+    {# Execution du script #}
+
+    {{ block('choice_widget') }}
+
+    {% if isSelect2|default(false) %}
+        {{ block('select2type_script') }}
+    {% endif %}
+
+{% endblock %}
+
+ {% block select2type_script %}
+    <script>
+        $(document).ready(function() {
+            $('#{{ id }}').select2({
+                multiple : $('#{{ id }}').attr('multiple') !== undefined,
+                theme: '{{ theme }}'
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block icontype_widget %}
+    <link href="{{ asset(fontawesomePath ~ '/css/all.min.css') }}" rel="stylesheet"/>
+    {{ block('select2type_widget') }}
+    <script>
+        $(document).ready(function() {
+            $('#{{ id }}').select2({
+                multiple : $('#{{ id }}').attr('multiple') !== undefined,
+                templateResult: format,
+                templateSelection: format,
+                theme: '{{ theme }}'
+            });
+
+            function format(icon)
+            {
+                return $('<span><i class="' + icon.text + '"></i> ' + icon.text + '</span>');
+            }
+        });
+    </script>
+{% endblock %}
+
+{% block autocomplete_widget %}
+
+    {{ block('integer_widget') }}
+    {{ block('select2_script')}}
+    <script src="{{ asset('bundles/tools/js/autocompleter-select2.js') }}"></script>
+    <script>
+        $(document).ready(function(){
+
+            $('#{{id}}').autocompleter({
+                url_list: '{{ path('ics-tools-autocomplete') }}',
+                url_get: '{{ path('ics-tools-autocomplete-get') }}',
+                entitytype: {{ class|json_encode|raw }},
+                placeholder: {{ placeholder|json_encode|raw }},
+                theme: '{{ theme }}',
+            {% if required %}
+                required: true,
+            {% else %}
+                required:false,
+            {% endif %}
+            });
+
+
+        });
+    </script>
+
+{% endblock %}

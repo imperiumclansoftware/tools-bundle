@@ -1,0 +1,13 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+    ICS\ToolsBundle\Controller\:
+        resource: "../src/Controller"
+        tags: ['controller.services_arguments']
+    ICS\ToolsBundle\Form\:
+        resource: "../src/Form"
+        tags: ['controller.services_arguments']
+    ICS\ToolsBundle\Twig\:
+        resource: "../src/Twig"
+        tags: ['controller.services_arguments']
