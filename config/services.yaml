@@ -11,3 +11,9 @@ services:
     ICS\ToolsBundle\Twig\:
         resource: "../src/Twig"
         tags: ['controller.services_arguments']
+    
+    # For Doctrine Database Schema MySQL Compatibility
+    mapping.listener:
+        class: ICS\MediaBundle\EntityListener\MappingListener
+        tags:
+            - { name: doctrine.event_listener, event: loadClassMetadata }
