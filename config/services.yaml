@@ -14,6 +14,6 @@ services:
     
     # For Doctrine Database Schema MySQL Compatibility
     mapping.listener:
-        class: ICS\ToolsBundle\EntityListener\MappingListener
+        class: ICS\ToolsBundle\Listener\MappingListener
         tags:
             - { name: doctrine.event_listener, event: loadClassMetadata }

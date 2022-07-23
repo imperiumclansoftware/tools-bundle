@@ -1,11 +1,9 @@
 <?php
 
-namespace ICS\ToolsBundle\EntityListener;
+namespace ICS\ToolsBundle\Listener;
 
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\DBAL\Platforms\MySQLPlatform;
-use Doctrine\DBAL\Driver\PDO\MySQL\Driver as PdoMysqlDriver;
-use Doctrine\DBAL\Driver\Mysqli\Driver as MysqliDriver;
 
 class MappingListener
 {
