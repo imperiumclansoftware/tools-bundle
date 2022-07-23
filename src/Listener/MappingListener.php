@@ -1,6 +1,6 @@
 <?php
 
-namespace ICS\MediaBundle\EntityListener;
+namespace ICS\ToolsBundle\EntityListener;
 
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\DBAL\Platforms\MySQLPlatform;
